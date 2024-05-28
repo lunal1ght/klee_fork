@@ -1,3 +1,7 @@
+// RUN: %clangxx %s -emit-llvm %O0opt -c -o %t1.bc
+// RUN: rm -rf %t.klee-out
+// RUN: %klee --output-dir=%t.klee-out --write-no-tests --exit-on-error --external-calls=none %t1.bc
+
 extern void abort(void);
 #include <assert.h>
 void reach_error() { assert(0); }
